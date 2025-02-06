@@ -13,6 +13,7 @@ import java.io.PrintWriter;
 import java.io.Reader;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFileChooser;
 
 /**
  *
@@ -37,19 +38,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        txtEntrada = new javax.swing.JTextField();
         btnAnalizar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtResultado = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        txtEntrada.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        txtEntrada.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtEntradaActionPerformed(evt);
-            }
-        });
 
         btnAnalizar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnAnalizar.setText("Analizar");
@@ -70,21 +63,16 @@ public class FrmPrincipal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(38, 38, 38)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(txtEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnAnalizar, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnAnalizar, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(38, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(19, 19, 19)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAnalizar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btnAnalizar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(34, Short.MAX_VALUE))
@@ -93,24 +81,13 @@ public class FrmPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEntradaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtEntradaActionPerformed
-
     private void btnAnalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnalizarActionPerformed
         // TODO add your handling code here:
-        File archivo = new File("archivo.txt");
-        PrintWriter escribir;
-        try {
-            escribir = new PrintWriter(archivo);
-            escribir.print(txtEntrada.getText());
-            escribir.close();
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(FrmPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        JFileChooser  chooser = new JFileChooser();
+        chooser.showOpenDialog(null);
         
         try {
-            Reader lector = new BufferedReader(new FileReader("archivo.txt"));
+            Reader lector = new BufferedReader(new FileReader(chooser.getSelectedFile()));
             Lexer lexer = new Lexer(lector);
             String resultado = "";
             while (true) {
@@ -177,7 +154,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAnalizar;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField txtEntrada;
     private javax.swing.JTextArea txtResultado;
     // End of variables declaration//GEN-END:variables
 }
