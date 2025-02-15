@@ -9,12 +9,23 @@ package codigo;
  * @author Angely
  */
 public enum Tokens {
+    Linea,
+    Int,
+    If,
+    Else,
+    While,
     Reservadas,
     Igual,
     Suma,
     Resta,
     Multiplicacion,
     Division,
+    Parentesis_a,
+    Parentesis_c,
+    Llave_a,
+    Llave_c,
+    Main,
+    Punto_coma,
     Identificador,
     Numero,
     ERROR
